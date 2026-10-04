@@ -4,18 +4,42 @@ plugins {
 	id 'ploceus' version '1.18.1'
 }
 
-loom {
+repositories {
+	mavenCentral()
+
+	maven {
+		name = 'Polyfrost Releases'
+		url = 'https://repo.polyfrost.org/releases'
+	}
+
+	maven {
+		name = 'Polyfrost Snapshots'
+		url = 'https://repo.polyfrost.org/snapshots'
+	}
 }
 
-ploceus {
-	setIntermediaryGeneration(2)
+loom {
+	fabricModJsonPath = rootProject.file(
+		"src/main/resources/fabric.mod.json"
+	)
+
+	runConfigs.all {
+		preferGradleTask = true
+		generateRunConfig = true
+		runDirectory = rootProject.file("run")
+		jvmArguments.add("-Dmixin.debug.export=true")
+	}
+
+	runConfigs.remove(runConfigs["server"])
 }
 
 dependencies {
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
+
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
 	mappings ploceus.featherMappings(project.feather_build)
 
 	ploceus.dependOsl(project.osl_version)
+
 }

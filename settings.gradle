@@ -4,15 +4,30 @@ pluginManagement {
 			name = 'Fabric'
 			url = 'https://maven.fabricmc.net/'
 		}
+
 		maven {
 			name = 'Ornithe Releases'
 			url = 'https://maven.ornithemc.net/releases'
 		}
+
 		maven {
 			name = 'Ornithe Snapshots'
 			url = 'https://maven.ornithemc.net/snapshots'
 		}
+
+		maven {
+			name = 'Polyfrost Releases'
+			url = 'https://repo.polyfrost.org/releases'
+		}
+
+		maven {
+			name = 'Polyfrost Snapshots'
+			url = 'https://repo.polyfrost.org/snapshots'
+		}
+
 		mavenLocal()
 		gradlePluginPortal()
 	}
 }
+
+rootProject.name = 'hitboxes_test'
